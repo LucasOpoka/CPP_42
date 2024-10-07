@@ -6,15 +6,15 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/05 18:37:42 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/06 20:51:27 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/10/07 15:54:53 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
 {
-	this->index = 0;
-	this->count = 0;
+	_index = 0;
+	_count = 0;
 }
 
 std::string get_input(std::string prompt)
@@ -42,25 +42,25 @@ void PhoneBook::add()
 		std::cout << "No field can be empty" << std::endl;
 		return;
 	}
-	Contact c(first_name, last_name, nickname, phonenumber, secret);
-	this->book[this->index] = c;
-	this->index = (this->index + 1) % 8;
-	this->count += (this->count < 8 ? 1 : 0);
+	Contact c(_index + 1, first_name, last_name, nickname, phonenumber, secret);
+	_book[_index] = c;
+	_index = (_index + 1) % 8;
+	_count += (_count < 8 ? 1 : 0);
 }
 
 void	PhoneBook::search()
 {
 	std::string ix;
 
-	if (!this->count)
+	if (!_count)
 		return;
-	for (int i = 0; i < this->count; i++)
-		this->book[i].print_short(i);
-	ix = get_input("Enter index from 0 to 7 for full info");
-	if (ix.length() != 1 || ix.at(0) < '0' || ix.at(0) > '7' || ix.at(0) - '0' >= this->count)
+	for (int i = 0; i < _count; i++)
+		_book[i].print_short();
+	ix = get_input("Enter index from 1 to 8 for full info:");
+	if (ix.length() != 1 || ix.at(0) < '1' || ix.at(0) > '8' || ix.at(0) - '1' >= _count)
 	{
 		std::cout << "Invalid index" << std::endl;
 		return;
 	}
-	this->book[ix.at(0) - '0'].print_long();
+	_book[ix.at(0) - '1'].print_long();
 }
