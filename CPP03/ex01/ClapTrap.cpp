@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 17:22:54 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/12 20:18:49 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/10/12 19:37:05 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ClapTrap.hpp"
@@ -16,9 +16,18 @@ ClapTrap::ClapTrap(): _name("DefaultName"), _hitPts(10), _engPts(10), _attPts(0)
 	std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
-ClapTrap::ClapTrap(const std::string &name): _name(name), _hitPts(10), _engPts(10), _attPts(0)
+ClapTrap::ClapTrap(const std::string &name,
+				   unsigned int hp,
+				   unsigned int eng,
+				   unsigned int att): _name(name), _hitPts(hp), _engPts(eng), _attPts(att)
 {
 	std::cout << "ClapTrap parametrized constructor called" << std::endl;
+}
+
+
+ClapTrap::ClapTrap(const std::string &name): _name(name), _hitPts(10), _engPts(10), _attPts(0)
+{
+	std::cout << "ClapTrap parametrized name constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &o): _name(o._name), _hitPts(o._hitPts), _engPts(o._engPts), _attPts(o._attPts)
@@ -28,7 +37,7 @@ ClapTrap::ClapTrap(const ClapTrap &o): _name(o._name), _hitPts(o._hitPts), _engP
 
 ClapTrap &ClapTrap::operator = (const ClapTrap &o)
 {
-	std::cout << "ClapTrap copy assignment operator called" << std::endl;
+	std::cout << "Claptrap copy assignment operator called" << std::endl;
 	if (this != &o)
 	{
 		this->~ClapTrap();
