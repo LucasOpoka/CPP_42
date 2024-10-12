@@ -6,22 +6,22 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/12 18:15:55 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/12 21:12:13 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/10/12 21:08:17 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int	main(void)
 {
-	ScavTrap	vannila;
-	ScavTrap	uno("'What is love?'");
-	ScavTrap	duo("'Baby dont hurt me!'");
+	FragTrap	vannila;
+	FragTrap	uno("'What is love?'");
+	FragTrap	duo("'Baby dont hurt me!'");
 
 	uno.attack("'Baby dont hurt me!'");
 	duo.takeDamage(0);
 	duo.beRepaired(9999);
 	
-	ScavTrap	thisOneIsAngry(duo);
+	FragTrap	thisOneIsAngry(duo);
 
 	thisOneIsAngry.attack("'What is love?'");
 	uno.takeDamage(10);
@@ -33,7 +33,7 @@ int	main(void)
 	uno.takeDamage(1);
 	thisOneIsAngry.beRepaired(1);
 
-	thisOneIsAngry.guardGate();
+	thisOneIsAngry.highFivesGuys();
 
 	return 0;
 }
