@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 12:13:41 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/15 14:35:28 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/10/15 17:15:36 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #pragma once
@@ -14,7 +14,7 @@
 
 class	Bureaucrat;
 
-class	Form
+class	AForm
 {	
 	private:
 			const std::string	_name;
@@ -22,32 +22,40 @@ class	Form
 			const int			_signGrade;
 			const int			_execGrade;
 	public:
-			Form();
-			Form(const Form& original);
-			Form(const std::string &name, int signGrade, int execGrade);
-			~Form();
+			AForm();
+			AForm(const AForm& original);
+			AForm(const std::string &name, int signGrade, int execGrade);
+			~AForm();
 
-			Form &operator = (const Form &original);
+			AForm &operator = (const AForm &original);
 
 			const std::string &getName() const;
 			bool getSigned() const;
 			int	getSignGrade() const;
 			int	getExecGrade() const;
 			void beSigned(const Bureaucrat &bureaucrat);
+			virtual void execute(const Bureaucrat &executor) const = 0;
 
 			class GradeTooHighException;
 			class GradeTooLowException;
+			class NotSignedException;
 };
 
-std::ostream &operator << (std::ostream &stream, const Form &form);
+std::ostream &operator << (std::ostream &stream, const AForm &form);
 
-class Form::GradeTooHighException : public std::exception
+class AForm::GradeTooHighException : public std::exception
 {
 	public:
     		const char *what() const throw();
 };
 
-class Form::GradeTooLowException : public std::exception
+class AForm::GradeTooLowException : public std::exception
+{
+	public:
+    		const char *what() const throw();
+};
+
+class AForm::NotSignedException : public std::exception
 {
 	public:
     		const char *what() const throw();
