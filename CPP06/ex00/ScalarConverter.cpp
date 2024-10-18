@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:45:01 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/17 21:53:45 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/10/18 23:09:42 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ScalarConverter.hpp"
@@ -195,4 +195,30 @@ void ScalarConverter::ConvertPseudoFloat(const std::string &s)
 	std::cout << "int: Impossible" << std::endl;
 	std::cout << "float: " << s << std::endl;
 	std::cout << "double: " << s.substr(0, s.length() - 1) << std::endl;
+}
+
+
+/* ---------- Central function to convert scalars ---------- */
+
+void ScalarConverter::convert(const std::string &s)
+{
+	int		(*checkers[6])(const std::string &s) = {&ScalarConverter::IsChar,
+													&ScalarConverter::IsInt,
+													&ScalarConverter::IsDouble,
+													&ScalarConverter::IsFloat,
+													&ScalarConverter::IsPseudoDouble,
+													&ScalarConverter::IsPseudoFloat};
+														
+	void	(*converts[6])(const std::string &s) = {&ScalarConverter::ConvertChar,
+													&ScalarConverter::ConvertInt,
+													&ScalarConverter::ConvertDouble,
+													&ScalarConverter::ConvertFloat,
+													&ScalarConverter::ConvertPseudoDouble,
+													&ScalarConverter::ConvertPseudoFloat};
+
+	for (int i = 0; i < 6; i++)
+		if (checkers[i](s))
+			return converts[i](s);
+	
+	std::cout << "Invalid input" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:19:30 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/17 21:21:22 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/10/18 22:46:15 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #pragma once
@@ -43,4 +43,6 @@ class ScalarConverter
 			
 			static int IsOverflow(const double &d);
 			static void printChar(const char &c, const int &overflow);
+
+			static void convert(const std::string &s);
 };
