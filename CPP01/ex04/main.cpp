@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 18:24:40 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/09 19:14:37 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/11/07 17:06:19 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <iostream>
@@ -23,7 +23,7 @@ void	open_files(const char *f_name, std::ifstream &in, std::ofstream &out)
 	out.open((file + ".replace").c_str());
 	if (!in || !out)
 	{
-		std::cout << "Couldn't open" << (!in ? " in" : " out") << " file" << std::endl;
+		std::cout << "Couldn't open " << (!in ? "in" : (in.close(), "out")) << " file" << std::endl;
 		exit(1);
 	}
 }
@@ -42,7 +42,12 @@ int main(int ac, char **av)
 	std::stringstream	content_stream;
 	std::string			content_string;
 	size_t				match_pos = 0;
-	
+
+	if (s1.empty())
+	{
+		std::cout << "String to replace can't be empty!" << std::endl;
+		return 1;
+	}
 	open_files(av[1], in, out);
 	content_stream << in.rdbuf();
 	content_string = content_stream.str();
