@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 20:14:13 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/15 16:18:30 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/11/30 19:08:32 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "Bureaucrat.hpp"
@@ -79,7 +79,7 @@ void	Bureaucrat::executeForm(AForm const &form)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << _name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+		std::cout << _name << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
 	}
 }
 
