@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 14:04:20 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/26 16:27:20 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/12/02 16:04:48 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "RPN.hpp"
@@ -38,8 +38,10 @@ int RPN::calcExpression()
 			throw(std::runtime_error("Empty token in expression!"));
 		else if (token.length() == 1 && operators.find(token) != std::string::npos)
 			_performOperation(token);
-		else
+		else if (token.length() == 1 && std::isdigit(token[0]))
         	_stack.push(std::stoi(token));
+		else
+			throw(std::runtime_error("Invalid number: " + token + "!"));
     }
 	if (_stack.size() != 1)
 		throw(std::runtime_error("Invalid expression, more operands than operators!"));

@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 14:09:45 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/25 20:50:18 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/12/02 17:26:22 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "BitcoinExchange.hpp"
@@ -37,10 +37,12 @@ float BitcoinExchange::validValue(std::string &str_value, bool to_exchange)
 
 void BitcoinExchange::validDate(std::string &date)
 {
-	struct tm time;
-
-	if (!strptime(date.c_str(), "%Y-%m-%d", &time))
+	std::regex ptrn("^([0-9]{4}[-]?((0[13-9]|1[012])[-]?(0[1-9]|[12][0-9]|30)|(0[13578]|1[02])[-]?31|02[-]?(0[1-9]|1[0-9]|2[0-8]))|([0-9]{2}(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048])00)[-]?02[-]?29)$");
+	if (!std::regex_match(date, ptrn))
 		throw(std::runtime_error("Invalid date: " + date));
+	//struct tm time;
+	//if (!strptime(date.c_str(), "%Y-%m-%d", &time))
+	//	throw(std::runtime_error("Invalid date: " + date));
 }
 
 void BitcoinExchange::printRates()

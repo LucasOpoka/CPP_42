@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 18:50:51 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/26 22:18:13 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/12/02 17:32:37 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "PmergeMe.hpp"
@@ -15,14 +15,17 @@ PmergeMe::PmergeMe() {};
 PmergeMe::PmergeMe(char **av)
 {
 	int i;
+	char remain;
 
 	while(*av)
 	{
-		std::string token(*av);	
-		i = boost::lexical_cast<int>(token);
+		std::istringstream token(*av);
+
+		if (!(token >> i) || token >> remain)
+	    	throw std::runtime_error("Failed to cast char* to int!");
 		if (i <= 0)
 			throw(std::runtime_error("Non positive integer in sequence!"));
-    	
+
 		_vec.push_back(i);
 		_deq.push_back(i);
 		av++;

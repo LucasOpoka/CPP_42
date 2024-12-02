@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/26 18:37:26 by lopoka            #+#    #+#             */
-/*   Updated: 2024/10/26 22:17:33 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/12/02 17:34:20 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #pragma once
@@ -16,7 +16,7 @@
 #include <iostream>
 #include <iomanip>
 #include <ctime>
-#include <boost/lexical_cast.hpp>
+#include <sstream>
 
 class PmergeMe
 {
