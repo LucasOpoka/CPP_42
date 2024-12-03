@@ -6,7 +6,7 @@
 /*   By: lopoka <lopoka@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 13:54:19 by lopoka            #+#    #+#             */
-/*   Updated: 2024/12/02 17:04:16 by lopoka           ###   ########.fr       */
+/*   Updated: 2024/12/03 11:52:06 by lopoka           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #pragma once
@@ -16,7 +16,6 @@
 #include <map>
 #include <string>
 #include <tuple>
-#include <regex>
 
 class	BitcoinExchange
 {
